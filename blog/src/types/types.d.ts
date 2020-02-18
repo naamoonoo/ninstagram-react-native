@@ -8,4 +8,5 @@ export interface IBlogContext {
 	state: IBlog[];
 	addBlogPost: any;
 	deleteBlogPost: any;
+	editBlogPost: any;
 }

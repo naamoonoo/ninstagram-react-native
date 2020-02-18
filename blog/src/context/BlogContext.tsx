@@ -7,6 +7,10 @@ const blogReducer = (state, action: { type: BlogTypes; paylaod: any }) => {
 			return [...state, action.paylaod];
 		case BlogTypes.DELETE:
 			return state.filter(post => post.id !== action.paylaod);
+		case BlogTypes.EDIT:
+			return state.map(post =>
+				post.id === action.paylaod.id ? action.paylaod : post
+			);
 		default:
 			return state;
 	}
@@ -27,6 +31,18 @@ const actions = {
 	deleteBlogPost(dispatch) {
 		return (id: string) => {
 			dispatch({ type: BlogTypes.DELETE, paylaod: id });
+		};
+	},
+
+	editBlogPost(dispatch) {
+		return (id: string, title: string, text: string) => {
+			const updatedBlogPost = {
+				id,
+				title,
+				text
+			};
+			console.log(updatedBlogPost);
+			dispatch({ type: BlogTypes.EDIT, paylaod: updatedBlogPost });
 		};
 	}
 };

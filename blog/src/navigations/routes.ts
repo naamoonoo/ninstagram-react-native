@@ -1,4 +1,6 @@
 export const routes = {
 	HOME: "HOME",
-	BLOG: "BLOG"
+	BLOG: "BLOG",
+	CREATE: "CREATE",
+	EDIT: "EDIT"
 };
