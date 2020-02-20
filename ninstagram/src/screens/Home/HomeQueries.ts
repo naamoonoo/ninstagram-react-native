@@ -22,3 +22,11 @@ export const GET_FEEDS = gql`
 		}
 	}
 `;
+
+export const IS_LOGGED_IN = gql`
+	query {
+		auth {
+			isLoggedIn @client
+		}
+	}
+`;

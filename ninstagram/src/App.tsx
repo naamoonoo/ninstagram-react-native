@@ -3,10 +3,13 @@ import React from "react";
 import client from "./apollo";
 
 import Navigator from "./navigations/Navagator";
+import { UserProvier } from "./context/UserContext";
 
 const App = () => (
 	<ApolloProvider client={client}>
-		<Navigator />
+		<UserProvier>
+			<Navigator />
+		</UserProvier>
 	</ApolloProvider>
 );
 

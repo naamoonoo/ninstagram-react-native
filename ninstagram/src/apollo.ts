@@ -1,17 +1,17 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink, concat, Operation, split } from "apollo-link";
+import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
 import { HttpLink } from "apollo-link-http";
-import { withClientState } from "apollo-link-state";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 import { AsyncStorage } from "react-native";
 
 const isDev = process.env.NODE_ENV === "development";
 
-const getToken = () => {
-	const token = AsyncStorage.getItem("jwt-token");
+const getToken = async () => {
+	const token = await AsyncStorage.getItem("jwt-token");
 	if (token) {
 		return token;
 	} else {
@@ -20,15 +20,14 @@ const getToken = () => {
 };
 
 const cache = new InMemoryCache();
-
-const authMiddleware = new ApolloLink((operation: Operation, forward: any) => {
-	operation.setContext({
-		headers: {
-			"jwt-token": getToken()
-		}
-	});
-	return forward(operation);
-});
+const authHeader = setContext(
+	request =>
+		new Promise((success, fail) => {
+			getToken().then(token =>
+				success({ headers: { "jwt-token": token } })
+			);
+		})
+);
 
 const httpLink = new HttpLink({
 	uri: isDev
@@ -39,7 +38,7 @@ const httpLink = new HttpLink({
 const wsLink = new WebSocketLink({
 	options: {
 		connectionParams: {
-			"jwt-token": getToken()
+			"jwt-token": getToken().then(data => data)
 		},
 		reconnect: true
 	},
@@ -66,20 +65,27 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 	// }
 });
 
-// should fix AsyncStorage => AsyncStorage
-// only for test purpose
-const localStateLink = withClientState({
-	cache,
-	defaults: {
+cache.writeData({
+	data: {
 		auth: {
 			__typename: "Auth",
 			isLoggedIn: Boolean(AsyncStorage.getItem("jwt-token"))
 		}
-	},
+	}
+});
+
+const client = new ApolloClient({
+	cache,
+	link: ApolloLink.from([errorLink, concat(authHeader, combinedLinks)]),
 	resolvers: {
 		Mutation: {
-			userLogIn: (_: any, { token }: any, { cache: appCache }: any) => {
-				AsyncStorage.setItem("jwt-token", token);
+			userLogIn: async (
+				_: any,
+				{ token }: any,
+				{ cache: appCache }: any
+			) => {
+				await AsyncStorage.setItem("jwt-token", token);
+
 				appCache.writeData({
 					data: {
 						auth: {
@@ -90,8 +96,8 @@ const localStateLink = withClientState({
 				});
 				return null;
 			},
-			userLogOut: (_: any, __: any, { cache: appCache }: any) => {
-				AsyncStorage.removeItem("jwt-token");
+			userLogOut: async (_: any, __: any, { cache: appCache }: any) => {
+				await AsyncStorage.removeItem("jwt-token");
 				appCache.writeData({
 					data: {
 						auth: {
@@ -104,15 +110,6 @@ const localStateLink = withClientState({
 			}
 		}
 	}
-});
-
-const client = new ApolloClient({
-	cache,
-	link: ApolloLink.from([
-		errorLink,
-		localStateLink,
-		concat(authMiddleware, combinedLinks)
-	])
 });
 
 export default client;

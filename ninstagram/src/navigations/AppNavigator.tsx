@@ -5,6 +5,7 @@ import { routes } from "./routes";
 
 import { Home } from "../screens/Home";
 import { Login } from "../screens/Login";
+import { User } from "../screens/User";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const App: React.FC = () => {
 			<Stack.Navigator initialRouteName={routes.HOME}>
 				<Stack.Screen name={routes.HOME} component={Home} />
 				<Stack.Screen name={routes.LOGIN} component={Login} />
+				<Stack.Screen name={routes.USER} component={User} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

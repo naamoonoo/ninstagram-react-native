@@ -7,40 +7,67 @@
 // ====================================================
 
 export interface GetFeeds_GetFeeds_feeds_user {
-  __typename: "User";
-  id: string;
-  firstName: string;
-  profilePhoto: string;
+	__typename: "User";
+	id: string;
+	firstName: string;
+	profilePhoto: string;
 }
 
 export interface GetFeeds_GetFeeds_feeds_likes {
-  __typename: "Like";
-  userId: string | null;
+	__typename: "Like";
+	userId: string | null;
 }
 
 export interface GetFeeds_GetFeeds_feeds {
-  __typename: "Feed";
-  id: string;
-  photo: string;
-  text: string | null;
-  user: GetFeeds_GetFeeds_feeds_user | null;
-  likes: (GetFeeds_GetFeeds_feeds_likes | null)[] | null;
-  updateAt: string;
+	__typename: "Feed";
+	id: string;
+	photo: string;
+	text: string | null;
+	user: GetFeeds_GetFeeds_feeds_user | null;
+	likes: (GetFeeds_GetFeeds_feeds_likes | null)[] | null;
+	updateAt: string;
 }
 
 export interface GetFeeds_GetFeeds {
-  __typename: "GetFeedsResponse";
-  res: boolean;
-  error: string | null;
-  feeds: (GetFeeds_GetFeeds_feeds | null)[] | null;
+	__typename: "GetFeedsResponse";
+	res: boolean;
+	error: string | null;
+	feeds: (GetFeeds_GetFeeds_feeds | null)[] | null;
 }
 
 export interface GetFeeds {
-  GetFeeds: GetFeeds_GetFeeds;
+	GetFeeds: GetFeeds_GetFeeds;
 }
 
 export interface GetFeedsVariables {
-  page: number;
+	page: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SocialLogin
+// ====================================================
+
+export interface SocialLogin_SocialLogin {
+	__typename: "SocialLoginResponse";
+	res: boolean;
+	error: string | null;
+	token: string | null;
+}
+
+export interface SocialLogin {
+	SocialLogin: SocialLogin_SocialLogin;
+}
+
+export interface SocialLoginVariables {
+	googleId: string;
+	firstName: string;
+	lastName: string;
+	profilePhoto: string;
+	email: string;
 }
 
 /* tslint:disable */
@@ -52,28 +79,28 @@ export interface GetFeedsVariables {
 // ====================================================
 
 export interface GetCurrentUser_GetCurrentUser_user_likes {
-  __typename: "Like";
-  feedId: string | null;
+	__typename: "Like";
+	feedId: string | null;
 }
 
 export interface GetCurrentUser_GetCurrentUser_user {
-  __typename: "User";
-  id: string;
-  firstName: string;
-  profilePhoto: string;
-  likes: (GetCurrentUser_GetCurrentUser_user_likes | null)[] | null;
-  email: string | null;
-  phone: string | null;
+	__typename: "User";
+	id: string;
+	firstName: string;
+	profilePhoto: string;
+	likes: (GetCurrentUser_GetCurrentUser_user_likes | null)[] | null;
+	email: string | null;
+	phone: string | null;
 }
 
 export interface GetCurrentUser_GetCurrentUser {
-  __typename: "GetCurrentUserResponse";
-  res: boolean;
-  user: GetCurrentUser_GetCurrentUser_user | null;
+	__typename: "GetCurrentUserResponse";
+	res: boolean;
+	user: GetCurrentUser_GetCurrentUser_user | null;
 }
 
 export interface GetCurrentUser {
-  GetCurrentUser: GetCurrentUser_GetCurrentUser;
+	GetCurrentUser: GetCurrentUser_GetCurrentUser;
 }
 
 /* tslint:disable */

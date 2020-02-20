@@ -1,7 +1,7 @@
 export const routes = {
 	HOME: "HOME",
 	LOGIN: "LOGIN",
-	COUNTER: "COUNTER",
+	USER: "USER",
 	COLOR: "COLOR",
 	NAME_IN_OUT: "NAME_IN_OUT",
 	BOXES: "BOXES"
