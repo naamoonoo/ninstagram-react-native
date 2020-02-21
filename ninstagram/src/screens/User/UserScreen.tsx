@@ -13,12 +13,12 @@ interface IProps {}
 
 const UserScreen: React.FC<IProps> = () => {
 	const { data: user } = useQuery<GetCurrentUser>(GET_CURRENT_USER);
-	const { logout } = useContext(UserContext);
 	const navigator = useNavigation();
 	const [logoutMutation] = useMutation(USER_LOG_OUT, {
+		update: cache => {
+			console.log(cache);
+		},
 		onCompleted: () => {
-			console.log("logged out!");
-			logout();
 			navigator.navigate(routes.HOME);
 		}
 	});

@@ -21,11 +21,7 @@ const LoginScreen: React.FC = () => {
 	const navigator = useNavigation();
 	const [loginMutation] = useMutation(USER_LOG_IN, {
 		update: cache => {
-			cache.writeData({
-				data: {
-					auth: {}
-				}
-			});
+			console.log(cache);
 		}
 	});
 

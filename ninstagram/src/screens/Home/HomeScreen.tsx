@@ -20,15 +20,15 @@ const HomeScreen: React.FC<IProps> = () => {
 	// 		variables: { page }
 	// 	}
 	// );
-	const { state: userState, login } = useContext(UserContext);
-	console.log(userState);
-	const { data: loggedIn } = useQuery(IS_LOGGED_IN);
-	const { data: userData } = useQuery<GetCurrentUser>(GET_CURRENT_USER, {
-		onCompleted: ({ GetCurrentUser: { res, user } }) => {
-			if (res) {
-				login(user);
-			}
+	// const { state: userState, login } = useContext(UserContext);
+	// console.log(userState);
+	const {
+		data: {
+			auth: { isLoggedIn }
 		}
+	} = useQuery(IS_LOGGED_IN, { fetchPolicy: "cache-first" });
+	const { data: userData } = useQuery<GetCurrentUser>(GET_CURRENT_USER, {
+		onCompleted: ({ GetCurrentUser: { res, user } }) => {}
 	});
 
 	const navigator = useNavigation();
@@ -36,12 +36,12 @@ const HomeScreen: React.FC<IProps> = () => {
 		headerRight: () => {
 			return (
 				<Feather
-					name={userData ? "user" : "user-plus"}
+					name={isLoggedIn ? "user" : "user-plus"}
 					size={30}
 					style={{ marginRight: 10 }}
 					onPress={() =>
 						navigator.navigate(
-							userData ? routes.USER : routes.LOGIN
+							isLoggedIn ? routes.USER : routes.LOGIN
 						)
 					}
 				/>
