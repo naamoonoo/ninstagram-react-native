@@ -15,9 +15,6 @@ const UserScreen: React.FC<IProps> = () => {
 	const { data: user } = useQuery<GetCurrentUser>(GET_CURRENT_USER);
 	const navigator = useNavigation();
 	const [logoutMutation] = useMutation(USER_LOG_OUT, {
-		update: cache => {
-			console.log(cache);
-		},
 		onCompleted: () => {
 			navigator.navigate(routes.HOME);
 		}

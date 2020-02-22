@@ -36,7 +36,7 @@ const LoginScreen: React.FC = () => {
 						token
 					}
 				});
-				navigator.navigate(routes.HOME);
+				// navigator.navigate(routes.HOME);
 			} else {
 				console.log(error);
 			}
