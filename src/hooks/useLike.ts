@@ -19,34 +19,6 @@ export const useLike = (
 	refetchQueries: any,
 	currentUser?: GetCurrentUser_GetCurrentUser_user
 ): [boolean, () => void] => {
-	// update: (cache, { data: ToggleDrivingModeResult }) => {
-	// 	if (ToggleDrivingModeResult) {
-	// 		const {
-	// 			ToggleDrivingMode: mutationResult
-	// 		} = ToggleDrivingModeResult;
-	// 		const { res, error } = mutationResult;
-	// 		if (res) {
-	// 			const queryInCaches: any = cache.readQuery({
-	// 				query: GET_CURRENT_USER
-	// 			});
-	// 			if (
-	// 				queryInCaches &&
-	// 				queryInCaches.GetCurrentUser &&
-	// 				queryInCaches.GetCurrentUser.user
-	// 			) {
-	// 				queryInCaches.GetCurrentUser.user.isDriving = !queryInCaches
-	// 					.GetCurrentUser.user.isDriving;
-	// 			}
-	// 			cache.writeQuery({
-	// 				data: queryInCaches,
-	// 				query: GET_CURRENT_USER
-	// 			});
-	// 		} else {
-	// 			toast.error(error);
-	// 		}
-	// 	}
-	// }
-
 	const onCompleteHandler = (res: boolean, error: string) => {
 		if (res) {
 			setLiked(!liked);
