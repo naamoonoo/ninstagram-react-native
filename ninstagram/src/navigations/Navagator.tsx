@@ -1,8 +1,8 @@
 import React from "react";
 import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
-import { IS_LOGGED_IN } from "../screens/Home/HomeQueries";
 import { useQuery } from "@apollo/react-hooks";
+import { IS_LOGGED_IN } from "../sharedQuries/SharedQueries.local";
 
 const Navigator: React.FC = () => {
 	const {

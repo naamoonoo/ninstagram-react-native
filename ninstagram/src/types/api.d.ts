@@ -3,6 +3,50 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateLike
+// ====================================================
+
+export interface CreateLike_CreateLike {
+	__typename: "CreateLikeResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface CreateLike {
+	CreateLike: CreateLike_CreateLike;
+}
+
+export interface CreateLikeVariables {
+	feedId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: DeleteLike
+// ====================================================
+
+export interface DeleteLike_DeleteLike {
+	__typename: "DeleteLikeResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface DeleteLike {
+	DeleteLike: DeleteLike_DeleteLike;
+}
+
+export interface DeleteLikeVariables {
+	feedId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetFeeds
 // ====================================================
 
@@ -68,6 +112,48 @@ export interface SocialLoginVariables {
 	lastName: string;
 	profilePhoto: string;
 	email: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetUserById
+// ====================================================
+
+export interface GetUserById_GetUserById_user_feeds {
+	__typename: "Feed";
+	id: string;
+	photo: string;
+}
+
+export interface GetUserById_GetUserById_user {
+	__typename: "User";
+	firstName: string;
+	profilePhoto: string;
+	feeds: (GetUserById_GetUserById_user_feeds | null)[] | null;
+	isEmailVerified: boolean | null;
+	isPhoneVerified: boolean | null;
+	email: string | null;
+	phone: string | null;
+	fbId: string | null;
+	googleId: string | null;
+}
+
+export interface GetUserById_GetUserById {
+	__typename: "GetUserByIdResponse";
+	res: boolean;
+	error: string | null;
+	user: GetUserById_GetUserById_user | null;
+}
+
+export interface GetUserById {
+	GetUserById: GetUserById_GetUserById;
+}
+
+export interface GetUserByIdVariables {
+	userId: string;
 }
 
 /* tslint:disable */

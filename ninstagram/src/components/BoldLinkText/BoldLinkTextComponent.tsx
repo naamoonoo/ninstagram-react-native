@@ -5,14 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 
 interface IProps {
 	text: string;
-	path: string;
+	onPressHandler: () => void;
 }
 
-const BoldLinkTextComponent: React.FC<IProps> = ({ text, path }) => {
+const BoldLinkTextComponent: React.FC<IProps> = ({ text, onPressHandler }) => {
 	const navigator = useNavigation();
-	const onPressHandler = () => {
-		navigator.navigate(path);
-	};
+
 	return (
 		<Text style={styles.text} onPress={onPressHandler}>
 			{text}
