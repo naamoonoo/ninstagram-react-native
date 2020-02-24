@@ -2,7 +2,8 @@ export const routes = {
 	HOME: "HOME",
 	LOGIN: "LOGIN",
 	USER: "USER",
-	COLOR: "COLOR",
-	NAME_IN_OUT: "NAME_IN_OUT",
-	BOXES: "BOXES"
+	CHAT: "CHAT",
+	CHAT_LIST: "CHAT_LIST",
+	COMMENTS: "COMMENTS",
+	LIKERS: "LIKERS"
 };

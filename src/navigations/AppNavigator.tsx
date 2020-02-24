@@ -5,6 +5,10 @@ import { routes } from "./routes";
 
 import { Home } from "../screens/Home";
 import { User } from "../screens/User";
+import { Comments } from "../screens/Comments";
+import { Chat } from "../screens/Chat";
+import { ChatList } from "../screens/ChatList";
+import { Likers } from "../screens/Likers";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +22,10 @@ const App: React.FC = () => {
 					options={{ title: "ninstagram" }}
 				/>
 				<Stack.Screen name={routes.USER} component={User} />
+				<Stack.Screen name={routes.COMMENTS} component={Comments} />
+				<Stack.Screen name={routes.CHAT} component={Chat} />
+				<Stack.Screen name={routes.CHAT_LIST} component={ChatList} />
+				<Stack.Screen name={routes.LIKERS} component={Likers} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

@@ -12,6 +12,13 @@ import { useLike } from "../../hooks/useLike";
 import { BoldLinkText } from "../BoldLinkText";
 import { useNavigation } from "@react-navigation/native";
 import { routes } from "../../navigations/routes";
+import { FeedText } from "../FeedText";
+import { LineInput } from "../LineInput";
+import { useTextInput } from "../../hooks/useTextInput";
+import {
+	TouchableOpacity,
+	TouchableWithoutFeedback
+} from "react-native-gesture-handler";
 
 interface IProps {
 	id: string;
@@ -43,45 +50,57 @@ const FeedComponent: React.FC<IProps> = ({
 		refetchQueries,
 		currentUser
 	);
-
+	const [comment, onChange, setComment] = useTextInput("");
 	const navigator = useNavigation();
 	return (
 		<View style={styles.container}>
 			<View style={styles.profile}>
 				<Profile {...user} />
 			</View>
-			<View style={styles.photo}>
+			<TouchableWithoutFeedback
+				style={styles.photo}
+				// onPress={({ nativeEvent }) => console.log(nativeEvent)}
+			>
 				<Image
 					style={{ width: "100%", height: "100%" }}
 					source={{
 						uri: photo
 					}}
 				/>
-			</View>
+			</TouchableWithoutFeedback>
 			<View style={styles.icons}>
-				<FeedIcons liked={liked} likeHandler={likeHandler} />
+				<FeedIcons
+					feedId={id}
+					liked={liked}
+					likeHandler={likeHandler}
+				/>
 				<Text style={styles.likeInfo}>
 					<BoldLinkText
 						text={likes.length.toString()}
-						onPressHandler={() => {}}
+						onPressHandler={() =>
+							navigator.navigate(routes.LIKERS, { feedId: id })
+						}
 					/>{" "}
 					likes this feed
 				</Text>
 			</View>
 			<View style={styles.text}>
-				<Text>
-					<BoldLinkText
-						text={user.firstName}
-						onPressHandler={() =>
-							navigator.navigate(routes.USER, { userId: user.id })
-						}
-					/>
-					{"  "}
-					{text}
-				</Text>
+				<BoldLinkText
+					text={user.firstName}
+					onPressHandler={() =>
+						navigator.navigate(routes.USER, { userId: user.id })
+					}
+				/>
+				<FeedText text={text} />
 			</View>
 			<View style={styles.comments}>
-				<Text>comments</Text>
+				<Profile {...user} onlyPhoto={true} size={25} />
+				<LineInput
+					value={comment}
+					onChangeHandler={onChange}
+					placeholder={"leave a comment"}
+					onSubmit={() => {}}
+				/>
 			</View>
 		</View>
 	);

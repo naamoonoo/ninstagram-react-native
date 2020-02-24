@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		overflow: "hidden",
-		marginRight: 5
+		marginRight: 10
 	}
 });
 

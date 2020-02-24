@@ -22,12 +22,13 @@ const styles = StyleSheet.create({
 		fontSize: FONT_SIZE_14
 	},
 	text: {
-		padding: 10,
-		height: 50
+		paddingHorizontal: 10,
+		flexDirection: "row"
 	},
 	comments: {
-		padding: 10,
-		height: 50
+		flexDirection: "row",
+		alignItems: "center",
+		padding: 15
 	}
 });
 
