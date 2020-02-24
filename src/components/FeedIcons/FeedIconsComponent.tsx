@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { BoldLinkText } from "../BoldLinkText";
+import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
 
 interface IProps {
@@ -21,6 +21,7 @@ const FeedIconsComponent: React.FC<IProps> = ({ liked, likeHandler }) => {
 					onPress={likeHandler}
 				/>
 				<AntDesign name="message1" size={25} />
+				{/* <Feather name="send" size={25} /> */}
 				<FontAwesome name="send-o" size={25} />
 			</View>
 			<View style={styles.rightIcons}>

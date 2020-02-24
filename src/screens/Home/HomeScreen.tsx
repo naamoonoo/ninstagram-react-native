@@ -61,15 +61,16 @@ const HomeScreen: React.FC<IProps> = () => {
 		}
 	});
 
-	const loadFeeds = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-		const {
-			nativeEvent: { layoutMeasurement, contentOffset, contentSize }
-		} = event;
-		const reachedToBottom =
-			layoutMeasurement.height + contentOffset.y >=
-			contentSize.height - 1;
+	// const loadFeeds = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+	const loadFeeds = () => {
+		// const {
+		// 	nativeEvent: { layoutMeasurement, contentOffset, contentSize }
+		// } = event;
+		// const reachedToBottom =
+		// 	layoutMeasurement.height + contentOffset.y >=
+		// 	contentSize.height - 1;
 
-		if (reachedToBottom && !fetched) {
+		if (!fetched) {
 			setFetched(true);
 			setPage(page + 1);
 			feedsRefetch();
@@ -87,7 +88,8 @@ const HomeScreen: React.FC<IProps> = () => {
 				/>
 			)}
 			showsVerticalScrollIndicator={false}
-			onScroll={loadFeeds}
+			onEndReached={loadFeeds}
+			// onScroll={loadFeeds}
 		/>
 	);
 };

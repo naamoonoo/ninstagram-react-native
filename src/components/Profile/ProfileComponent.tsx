@@ -9,23 +9,32 @@ interface IProps {
 	id: string;
 	firstName: string;
 	profilePhoto: string;
+	onlyPhoto?: boolean;
+	size?: number;
 }
 
 const ProfileComponent: React.FC<IProps> = ({
 	id,
 	firstName,
-	profilePhoto
+	profilePhoto,
+	onlyPhoto = false,
+	size = 30
 }) => {
 	const navigator = useNavigation();
 	return (
 		<View style={styles.container}>
-			<Image style={styles.image} source={{ uri: profilePhoto }} />
-			<BoldLinkText
-				text={firstName}
-				onPressHandler={() =>
-					navigator.navigate(routes.USER, { userId: id })
-				}
+			<Image
+				style={{ ...styles.image, width: size, height: size }}
+				source={{ uri: profilePhoto }}
 			/>
+			{!onlyPhoto && (
+				<BoldLinkText
+					text={firstName}
+					onPressHandler={() =>
+						navigator.navigate(routes.USER, { userId: id })
+					}
+				/>
+			)}
 		</View>
 	);
 };
