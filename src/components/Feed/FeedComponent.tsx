@@ -69,11 +69,17 @@ const FeedComponent: React.FC<IProps> = ({
 				/>
 			</TouchableWithoutFeedback>
 			<View style={styles.icons}>
-				<FeedIcons liked={liked} likeHandler={likeHandler} />
+				<FeedIcons
+					feedId={id}
+					liked={liked}
+					likeHandler={likeHandler}
+				/>
 				<Text style={styles.likeInfo}>
 					<BoldLinkText
 						text={likes.length.toString()}
-						onPressHandler={() => {}}
+						onPressHandler={() =>
+							navigator.navigate(routes.LIKERS, { feedId: id })
+						}
 					/>{" "}
 					likes this feed
 				</Text>
