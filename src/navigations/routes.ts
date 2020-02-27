@@ -5,5 +5,6 @@ export const routes = {
 	CHAT: "CHAT",
 	CHAT_LIST: "CHAT_LIST",
 	COMMENTS: "COMMENTS",
-	LIKERS: "LIKERS"
+	LIKERS: "LIKERS",
+	FEED: "FEED"
 };

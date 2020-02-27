@@ -10,6 +10,8 @@ import { routes } from "../../navigations/routes";
 import { UserContext } from "../../context/UserContext";
 import { GET_USER_BY_ID } from "./UserQueries";
 import { GetUserById } from "../../types/api";
+import { Profile } from "../../components/Profile";
+import { PhotoPartition } from "../../components/PhotoPartition";
 
 interface IRoutes extends Route<"EDIT"> {
 	params: {
@@ -44,10 +46,10 @@ const UserScreen: React.FC<IProps> = () => {
 		}
 	});
 	const [logOutMutation] = useMutation(USER_LOG_OUT);
-
 	return (
 		<View style={styles.container}>
-			<Text>{user && user.firstName}</Text>
+			<Profile {...user} />
+			{user && user.feeds && <PhotoPartition feeds={user.feeds} />}
 			{isCurrentUser && (
 				<Button title={"logout"} onPress={() => logOutMutation()} />
 			)}
