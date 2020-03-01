@@ -18,6 +18,15 @@ export const GET_FEEDS = gql`
 					userId
 				}
 				updateAt
+				comments {
+					id
+					comment
+					user {
+						id
+						firstName
+						profilePhoto
+					}
+				}
 			}
 		}
 	}

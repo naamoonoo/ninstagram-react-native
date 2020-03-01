@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
 		height: 50
 	},
 	photo: {
-		height: 450
+		height: 450,
+		overflow: "hidden"
 	},
 	icons: {
 		padding: 10,

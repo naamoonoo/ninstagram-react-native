@@ -76,6 +76,7 @@ const HomeScreen: React.FC<IProps> = () => {
 			feedsRefetch();
 		}
 	};
+
 	return (
 		<FlatList
 			data={feeds}
