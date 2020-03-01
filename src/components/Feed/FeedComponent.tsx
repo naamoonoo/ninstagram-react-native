@@ -92,7 +92,11 @@ const FeedComponent: React.FC<IProps> = ({
 				<FeedText text={text} />
 			</View>
 			<View style={styles.comments}>
-				<FeedComments user={user} comments={comments} feedId={id} />
+				<FeedComments
+					user={currentUser}
+					comments={comments}
+					feedId={id}
+				/>
 			</View>
 		</View>
 	);

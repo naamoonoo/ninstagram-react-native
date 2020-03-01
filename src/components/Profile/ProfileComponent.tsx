@@ -24,7 +24,12 @@ const ProfileComponent: React.FC<IProps> = ({
 	return (
 		<View style={styles.container}>
 			<Image
-				style={{ ...styles.image, width: size, height: size }}
+				style={{
+					...styles.image,
+					width: size,
+					height: size,
+					borderRadius: size / 2
+				}}
 				source={{ uri: profilePhoto }}
 			/>
 			{!onlyPhoto && (
