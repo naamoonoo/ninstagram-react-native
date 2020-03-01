@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { routes } from "../../navigations/routes";
 import { FeedText } from "../FeedText";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { FeedComments } from "../FeedComments";
 
 interface IProps {
 	id: string;
@@ -91,7 +92,7 @@ const FeedComponent: React.FC<IProps> = ({
 				<FeedText text={text} />
 			</View>
 			<View style={styles.comments}>
-				{/* <FeedComments comments={comments} /> */}
+				<FeedComments user={user} comments={comments} feedId={id} />
 			</View>
 		</View>
 	);

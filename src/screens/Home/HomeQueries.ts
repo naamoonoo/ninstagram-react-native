@@ -20,12 +20,6 @@ export const GET_FEEDS = gql`
 				updateAt
 				comments {
 					id
-					comment
-					user {
-						id
-						firstName
-						profilePhoto
-					}
 				}
 			}
 		}
