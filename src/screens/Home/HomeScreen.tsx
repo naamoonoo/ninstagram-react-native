@@ -1,12 +1,5 @@
-import React, { useState, useContext } from "react";
-import {
-	View,
-	Text,
-	ListView,
-	FlatList,
-	NativeSyntheticEvent,
-	NativeScrollEvent
-} from "react-native";
+import React, { useState } from "react";
+import { FlatList } from "react-native";
 import styles from "./styles";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_FEEDS } from "./HomeQueries";
@@ -30,9 +23,9 @@ const HomeScreen: React.FC<IProps> = () => {
 		variables: { page },
 		onCompleted: () => setFetched(false)
 	});
-	const {
-		data: { auth: { isLoggedIn = false } = {} } = {}
-	} = useQuery(IS_LOGGED_IN, { fetchPolicy: "cache-first" });
+	const { data: { auth: { isLoggedIn = false } = {} } = {} } = useQuery(
+		IS_LOGGED_IN
+	);
 	const {
 		data: { GetCurrentUser: { user = null } = {} } = {},
 		refetch: userRefetch

@@ -14,8 +14,6 @@ const getToken = async () => {
 	const token = await AsyncStorage.getItem("jwt-token");
 	if (token) {
 		return token;
-	} else {
-		return "";
 	}
 };
 
@@ -23,9 +21,10 @@ const cache = new InMemoryCache();
 const authHeader = setContext(
 	request =>
 		new Promise((success, fail) => {
-			getToken().then(token =>
-				success({ headers: { "jwt-token": token } })
-			);
+			const token = getToken();
+			// getToken().then(token =>
+			success({ headers: { "jwt-token": token } });
+			// );
 		})
 );
 
