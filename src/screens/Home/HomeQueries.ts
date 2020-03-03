@@ -18,6 +18,9 @@ export const GET_FEEDS = gql`
 					userId
 				}
 				updateAt
+				comments {
+					id
+				}
 			}
 		}
 	}

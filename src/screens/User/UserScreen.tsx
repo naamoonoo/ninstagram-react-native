@@ -6,8 +6,6 @@ import { GET_CURRENT_USER } from "../../sharedQuries/SharedQueries";
 import { GetCurrentUser } from "../../types/api";
 import { USER_LOG_OUT } from "../../sharedQuries/SharedQueries.local";
 import { useNavigation, Route, useRoute } from "@react-navigation/native";
-import { routes } from "../../navigations/routes";
-import { UserContext } from "../../context/UserContext";
 import { GET_USER_BY_ID } from "./UserQueries";
 import { GetUserById } from "../../types/api";
 import { Profile } from "../../components/Profile";

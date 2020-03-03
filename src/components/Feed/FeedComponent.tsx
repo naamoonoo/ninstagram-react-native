@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import styles from "./styles";
-
 import { Profile } from "../Profile";
 import {
 	GetCurrentUser_GetCurrentUser_user,
-	GetFeeds_GetFeeds_feeds_user
+	GetFeeds_GetFeeds_feeds_user,
+	GetFeeds_GetFeeds_feeds_comments
 } from "../../types/api";
 import { FeedIcons } from "../FeedIcons";
 import { useLike } from "../../hooks/useLike";
@@ -13,12 +13,8 @@ import { BoldLinkText } from "../BoldLinkText";
 import { useNavigation } from "@react-navigation/native";
 import { routes } from "../../navigations/routes";
 import { FeedText } from "../FeedText";
-import { LineInput } from "../LineInput";
-import { useTextInput } from "../../hooks/useTextInput";
-import {
-	TouchableOpacity,
-	TouchableWithoutFeedback
-} from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { FeedComments } from "../FeedComments";
 
 interface IProps {
 	id: string;
@@ -28,6 +24,7 @@ interface IProps {
 	updateAt: string;
 	user: GetFeeds_GetFeeds_feeds_user;
 	currentUser?: GetCurrentUser_GetCurrentUser_user;
+	comments?: GetFeeds_GetFeeds_feeds_comments[];
 	refetchQueries: () => void;
 }
 
@@ -38,6 +35,7 @@ const FeedComponent: React.FC<IProps> = ({
 	text,
 	updateAt,
 	user,
+	comments,
 	currentUser,
 	refetchQueries
 }) => {
@@ -50,8 +48,8 @@ const FeedComponent: React.FC<IProps> = ({
 		refetchQueries,
 		currentUser
 	);
-	const [comment, onChange, setComment] = useTextInput("");
 	const navigator = useNavigation();
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.profile}>
@@ -94,12 +92,10 @@ const FeedComponent: React.FC<IProps> = ({
 				<FeedText text={text} />
 			</View>
 			<View style={styles.comments}>
-				<Profile {...user} onlyPhoto={true} size={25} />
-				<LineInput
-					value={comment}
-					onChangeHandler={onChange}
-					placeholder={"leave a comment"}
-					onSubmit={() => {}}
+				<FeedComments
+					user={currentUser}
+					comments={comments}
+					feedId={id}
 				/>
 			</View>
 		</View>

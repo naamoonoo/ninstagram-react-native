@@ -1,16 +1,20 @@
 import { StyleSheet } from "react-native";
 import { FONT_SIZE_14 } from "../../styles/typography";
+import { padding } from "../../styles/mixins";
+import { GRAY_DARK } from "../../styles/colors";
 
 const styles = StyleSheet.create({
 	container: {
-		minHeight: 450
+		minHeight: 450,
+		marginBottom: 20
 	},
 	profile: {
 		padding: 10,
 		height: 50
 	},
 	photo: {
-		height: 450
+		height: 450,
+		overflow: "hidden"
 	},
 	icons: {
 		padding: 10,
@@ -26,9 +30,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row"
 	},
 	comments: {
-		flexDirection: "row",
-		alignItems: "center",
-		padding: 15
+		padding: 10
 	}
 });
 
