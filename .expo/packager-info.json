@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 51192,
-  "expoServerNgrokUrl": "https://jt-duf.anonymous.ninstagram-native.exp.direct",
-  "packagerNgrokUrl": "https://packager.jt-duf.anonymous.ninstagram-native.exp.direct",
-  "ngrokPid": 51210,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

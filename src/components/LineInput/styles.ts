@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 	container: { display: "flex", flex: 1 },
 	input: { width: "95%" },
 	icons: {
-		justifyContent: "space-between",
+		// justifyContent: "space-between",
 		alignItems: "center",
 		position: "absolute",
 		flexDirection: "row",

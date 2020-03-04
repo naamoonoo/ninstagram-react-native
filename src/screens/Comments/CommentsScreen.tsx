@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ListView } from "react-native";
+import { View, Text, ListView, KeyboardAvoidingView } from "react-native";
 import styles from "./styles";
 import { useTextInput } from "../../hooks/useTextInput";
 import { Profile } from "../../components/Profile";
@@ -107,15 +107,23 @@ const CommentsScreen: React.FC<IProps> = () => {
 					</View>
 				)}
 			/>
-			<View style={styles.input}>
+			<KeyboardAvoidingView
+				style={styles.input}
+				behavior="padding"
+				enabled
+				keyboardVerticalOffset={110}
+			>
 				<Profile {...user} onlyPhoto={true} size={40} />
 				<LineInput
 					value={comment}
 					onChangeHandler={onChange}
 					placeholder={"leave a comment"}
-					onSubmit={() => {}}
+					onSubmit={async () => {
+						await newCommentMutation();
+						setComment("");
+					}}
 				/>
-			</View>
+			</KeyboardAvoidingView>
 		</View>
 	);
 };

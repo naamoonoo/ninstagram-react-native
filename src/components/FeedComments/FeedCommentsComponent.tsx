@@ -29,7 +29,7 @@ const FeedCommentsComponent: React.FC<IProps> = ({
 	comments
 }) => {
 	const navigator = useNavigation();
-	const [comment, onChange] = useTextInput("");
+	const [comment, onChange, setComment] = useTextInput("");
 
 	const [newCommentMutation] = useMutation<
 		CreateComment,
@@ -41,6 +41,7 @@ const FeedCommentsComponent: React.FC<IProps> = ({
 		},
 		onCompleted: ({ CreateComment: { res, error } }) => {
 			if (res) {
+				setComment("");
 				navigator.navigate(routes.COMMENTS, { feedId });
 			} else {
 				console.log(error);

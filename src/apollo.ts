@@ -14,6 +14,8 @@ const getToken = async () => {
 	const token = await AsyncStorage.getItem("jwt-token");
 	if (token) {
 		return token;
+	} else {
+		return null;
 	}
 };
 
@@ -21,10 +23,10 @@ const cache = new InMemoryCache();
 const authHeader = setContext(
 	request =>
 		new Promise((success, fail) => {
-			const token = getToken();
-			// getToken().then(token =>
-			success({ headers: { "jwt-token": token } });
-			// );
+			// const token = getToken();
+			getToken().then(token =>
+				success({ headers: { "jwt-token": token } })
+			);
 		})
 );
 
@@ -64,13 +66,15 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 	// }
 });
 
-cache.writeData({
-	data: {
-		auth: {
-			__typename: "Auth",
-			isLoggedIn: Boolean(AsyncStorage.getItem("jwt-token"))
+getToken().then(token => {
+	cache.writeData({
+		data: {
+			auth: {
+				__typename: "Auth",
+				isLoggedIn: Boolean(token)
+			}
 		}
-	}
+	});
 });
 
 const client = new ApolloClient({
